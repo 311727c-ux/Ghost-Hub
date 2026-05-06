@@ -1,13 +1,22 @@
 FROM node:20-alpine
 
-RUN npm install -g pnpm
+# Install pnpm
+RUN npm install -g pnpm@9
 
 WORKDIR /app
 
-COPY . .
+# Copy workspace config files first
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 
-RUN pnpm install --no-frozen-lockfile
+# Copy all packages
+COPY lib/ ./lib/
+COPY artifacts/ ./artifacts/
+COPY tsconfig.base.json tsconfig.json ./
 
+# Install all dependencies
+RUN pnpm install --frozen-lockfile --ignore-scripts || pnpm install --no-frozen-lockfile --ignore-scripts
+
+# Build the api-server
 RUN pnpm --filter @workspace/api-server run build
 
 ENV NODE_ENV=production
