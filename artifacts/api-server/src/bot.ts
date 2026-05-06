@@ -241,17 +241,7 @@ async function handleSlashCommand(interaction: ChatInputCommandInteraction): Pro
   if (interaction.commandName === "ticket") {
     const embed = new EmbedBuilder()
       .setTitle("🎫 Système de Tickets")
-      .setDescription(
-        "• 💰 **PRIX → 8€ Lifetime**\n\n" +
-        "• ✨ **CE QUE TU OBTIENS**\n" +
-        "✓ Accès à vie au script\n" +
-        "✓ Toutes les mises à jour incluses\n" +
-        "✓ Accès aux salons privés\n\n" +
-        "• 💳 **MOYEN DE PAIEMENT**\n" +
-        "• PayPal : <@1415293957272895691> ou <@1462090089294201045>\n" +
-        "• Brainrots : (Minimum 2 Garama)\n\n" +
-        "Sélectionne une catégorie ci-dessous pour ouvrir un ticket."
-      )
+      .setDescription("Sélectionne une catégorie ci-dessous pour ouvrir un ticket.")
       .setColor(0x5865f2);
 
     const selectMenu = new StringSelectMenuBuilder()
