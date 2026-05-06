@@ -223,6 +223,7 @@ async function handleSlashCommand(interaction: ChatInputCommandInteraction): Pro
 
   // /pricing
   if (interaction.commandName === "pricing") {
+    await interaction.deferReply();
     const embed = new EmbedBuilder()
       .setColor(0x5865f2)
       .setDescription(
@@ -233,8 +234,7 @@ async function handleSlashCommand(interaction: ChatInputCommandInteraction): Pro
         "• Brainrot | Minimum Garama 2 Traits\n\n" +
         "Make a ticket for buy <#1476335856599040062>"
       );
-
-    await interaction.reply({ embeds: [embed], flags: MessageFlags.SuppressEmbeds });
+    await interaction.editReply({ embeds: [embed], flags: MessageFlags.SuppressEmbeds });
     return;
   }
 
