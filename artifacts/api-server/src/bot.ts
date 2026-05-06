@@ -223,18 +223,17 @@ async function handleSlashCommand(interaction: ChatInputCommandInteraction): Pro
 
   // /pricing
   if (interaction.commandName === "pricing") {
-    await interaction.deferReply();
     const embed = new EmbedBuilder()
       .setColor(0x5865f2)
       .setDescription(
         "• Prices:\n\n" +
         "**FORPERMANENT KEY**\n\n" +
-        "• 9,00$ **`PAYPAL`** [@Click here](https://www.paypal.com/paypalme/27Ontop)\n" +
+        "• 9,00$ **`PAYPAL`** [➜ Click here](https://www.paypal.com/paypalme/27Ontop)\n" +
         "• 10$ **`GIFTCARD robux & paysafcard`**\n" +
         "• Brainrot | Minimum Garama 2 Traits\n\n" +
         "Make a ticket for buy <#1476335856599040062>"
       );
-    await interaction.editReply({ embeds: [embed], flags: MessageFlags.SuppressEmbeds });
+    await interaction.reply({ embeds: [embed] });
     return;
   }
 
