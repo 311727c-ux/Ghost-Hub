@@ -586,18 +586,19 @@ client.on(Events.MessageCreate, async (message) => {
   if (!message.guild) return;
   const member = message.member;
   if (!member) return;
-  if (isStaff(member)) return;
 
   const content = message.content;
+
+  // Anti-@everyone / @here — s'applique à TOUT LE MONDE sans exception
+  if (message.mentions.everyone || /@everyone|@here/i.test(content)) {
+    await message.delete().catch(() => {});
+    return;
+  }
+
+  if (isStaff(member)) return;
+
   let deleted = false;
   let reason = "";
-
-  // Anti-@everyone / @here
-  if (/@everyone|@here/.test(content)) {
-    await message.delete().catch(() => {});
-    deleted = true;
-    reason = "@everyone / @here interdit";
-  }
 
   // Anti-lien & anti-invite
   if (!deleted) {
